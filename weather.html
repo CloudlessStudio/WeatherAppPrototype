@@ -41,6 +41,24 @@
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
+
+
+            var popup = L.popup(); //create popup
+
+            function onMapClick(e) {
+                let loc = e.latlng;       //access lat lon json obj
+                console.log(loc.lat);
+                console.log(loc.lng);
+                //var marker = L.marker([loc.lat, loc.lng]).openOn(map);
+                popup
+                    .setLatLng(loc)
+                    .setContent("Current Location is: " + loc.lat.toString()+","+loc.lng.toString())     //show user where they clicked
+                    .openOn(map);
+            }
+
+            ///map.on('click', onMapClick);
+
+            map.addEventListener('click', onMapClick);
         </script>
     </body>
 </html>
